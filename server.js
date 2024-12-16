@@ -40,7 +40,14 @@ const createTable = async () => {
 };
 
 // Insert data route
-app.post('/insert', async (req, res) => {
+
+// Base endpoint (Root route)
+app.use(express.static(path.join(__dirname, 'client', 'build')));
+
+// Base endpoint (Root route)
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+});app.post('/insert', async (req, res) => {
   const { name, description } = req.body;
 
   const query = `INSERT INTO students (name, description) VALUES ($1, $2) RETURNING *;`;
