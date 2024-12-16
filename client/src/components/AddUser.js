@@ -9,7 +9,7 @@ const AddUser = ({ onUserAdded }) => {
   const handleSubmit = e => {
     e.preventDefault()
     axios
-      .post('https://myapp-z9fv.onrender.com//insert', { name, description })
+      .post('https://myapp-z9fv.onrender.com/insert', { name, description })
       .then(response => {
         console.log('User added:', response.data)
         alert('User added successfully!')
