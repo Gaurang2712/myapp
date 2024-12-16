@@ -42,11 +42,11 @@ const createTable = async () => {
 // Insert data route
 
 // Base endpoint (Root route)
-app.use(express.static(path.join(__dirname, 'client', 'build')));
+app.use(express.static(path.join('myapp', 'client', 'build')));
 
 // Base endpoint (Root route)
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  res.sendFile(path.join('myapp', 'client', 'build', 'index.html'));
 });app.post('/insert', async (req, res) => {
   const { name, description } = req.body;
 
