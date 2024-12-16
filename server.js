@@ -2,7 +2,7 @@ import express from 'express';
 import pkg from 'pg';
 import cors from 'cors';
 import dotenv from 'dotenv';
-
+import path from 'path'; 
 dotenv.config();
 
 const { Client } = pkg;
@@ -42,12 +42,15 @@ const createTable = async () => {
 // Insert data route
 
 // Base endpoint (Root route)
-app.use(express.static(path.join('myapp', 'client', 'build')));
+app.use(express.static(path.join(__dirname, 'client', 'build')));
+
 
 // Base endpoint (Root route)
 app.get('/', (req, res) => {
-  res.sendFile(path.join('myapp', 'client', 'build', 'index.html'));
-});app.post('/insert', async (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+});
+
+app.post('/insert', async (req, res) => {
   const { name, description } = req.body;
 
   const query = `INSERT INTO students (name, description) VALUES ($1, $2) RETURNING *;`;
